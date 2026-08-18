@@ -1,78 +1,79 @@
-# Registro Automático de Ponto
+# Automatic Time Clock Registration
 
-Este projeto automatiza o registro de ponto em um sistema web, utilizando Selenium para interagir com a interface do usuário. O script permite login, navegação até a página de espelho de ponto, inserção de batidas e atualização da página.
+This project automates time clock registration in a web-based system using Selenium to interact with the user interface. The script allows you to log in, navigate to the time sheet page, enter clock-in/clock-out records, and refresh the page.
 
-## Requisitos
+## Requirements
 
-Antes de executar o projeto, certifique-se de ter os seguintes requisitos instalados:
+Before running the project, make sure you have the following requirements installed:
 
 - Python 3.11+
-- Google Chrome instalado
-- ChromeDriver compatível com a versão do Chrome
-- Bibliotecas Python necessárias:
+- Google Chrome installed
+- ChromeDriver compatible with your Chrome version
+- Required Python libraries:
 
 ```bash
 pip install selenium webdriver-manager holidays tomli-w
 ```
 
-## Configuração
+## Configuration
 
-Antes de executar o script, é necessário configurar o arquivo `settings.toml` com as credenciais e informações necessárias:
+Before running the script, you need to configure the `settings.toml` file with the required credentials and information:
 
 ```toml
-login = "seu_usuario"
-senha = "sua_senha"
-desc = "Justificativa do ponto"
+login = "your_username"
+senha = "your_password"
+desc = "Time clock justification"
 minhour = "07:50"
 maxhour = "08:00"
-url = "URL do sistema de ponto"
+url = "Time clock system URL"
 ```
 
-Se o arquivo `settings.toml` não existir, ele será criado automaticamente na primeira execução.
+If the `settings.toml` file does not exist, it will be created automatically on the first run.
 
-## Uso
+## Usage
 
-Para executar o script, basta rodar:
+To run the script, simply execute:
 
 ```bash
 python script.py
 ```
 
-O script irá:
-1. Abrir o navegador e acessar a URL fornecida.
-2. Realizar login com as credenciais do `settings.toml`.
-3. Acessar a página de espelho de ponto.
-4. Verificar os dias trabalhados e validar os horários.
-5. Inserir os horários de entrada e saída, respeitando as regras de compensação.
-6. Atualizar a página para salvar as informações.
+The script will:
 
-## Estrutura do Código
+1. Open the browser and access the provided URL.
+2. Log in using the credentials from `settings.toml`.
+3. Access the time sheet page.
+4. Check the working days and validate the recorded times.
+5. Enter the clock-in and clock-out times, following the compensation rules.
+6. Refresh the page to save the information.
 
-O projeto está estruturado da seguinte forma:
+## Code Structure
 
-- `do_login(driver, user, passwd)`: Realiza o login no sistema.
-- `goto_hours_grid(driver)`: Navega até a página de espelho de ponto.
-- `open_insert(driver, handler)`: Abre o modal para inserção de batidas.
-- `insert_hours(driver, team, data_validation, compensacao, config_hours)`: Insere as batidas de ponto.
-- `do_update(driver)`: Atualiza a página.
-- `generate_time_range(start_time, end_time)`: Gera um intervalo de horários possíveis para a entrada.
-- `generate_data_for_validation(driver, data_structure)`: Obtém os dados necessários para validação do ponto.
-- `main()`: Controla o fluxo principal do script.
+The project is structured as follows:
+
+- `do_login(driver, user, passwd)`: Logs into the system.
+- `goto_hours_grid(driver)`: Navigates to the time sheet page.
+- `open_insert(driver, handler)`: Opens the modal for entering time records.
+- `insert_hours(driver, team, data_validation, compensacao, config_hours)`: Inserts the time clock records.
+- `do_update(driver)`: Refreshes the page.
+- `generate_time_range(start_time, end_time)`: Generates a range of possible clock-in times.
+- `generate_data_for_validation(driver, data_structure)`: Retrieves the data required for time validation.
+- `main()`: Controls the main script flow.
 
 ## Logs
 
-Todas as operações do script são registradas no arquivo `ponto_log.log`, incluindo sucessos e erros encontrados durante a execução.
+All script operations are recorded in the `ponto_log.log` file, including successful operations and errors encountered during execution.
 
-## Contribuição
+## Contributing
 
-Se desejar contribuir com melhorias para o projeto, siga os seguintes passos:
-1. Faça um fork do repositório.
-2. Crie um branch para sua funcionalidade (`git checkout -b minha-feature`).
-3. Faça suas alterações e commit (`git commit -m "Minha melhoria"`).
-4. Envie para seu fork (`git push origin minha-feature`).
-5. Abra um Pull Request para este repositório.
+If you would like to contribute improvements to the project, follow these steps:
 
-## Licença
+1. Fork the repository.
+2. Create a branch for your feature (`git checkout -b my-feature`).
+3. Make your changes and commit them (`git commit -m "My improvement"`).
+4. Push the branch to your fork (`git push origin my-feature`).
+5. Open a Pull Request for this repository.
 
-Este projeto está sob a licença MIT.
+## License
 
+This project is licensed under the MIT License.
